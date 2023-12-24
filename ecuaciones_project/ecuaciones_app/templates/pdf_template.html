@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load custom_filters %}
+{%  load static %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mx-auto mt-5">
+                <h1 class="text-center">Generador de sumas</h1>
+                {% if ecuaciones %}
+                    <div class="mt-5">
+                        <h3>Resultados:</h3>
+                        <div class="row">
+                        {% for actividad in ecuaciones %}
+                            <div class="col-md-4 ecuaciones">
+                                <ul>
+                                    {% for ecuacion in actividad %}
+                                        <li>
+                                            {% for variable in ecuacion %}
+                                                {% if forloop.first %}
+                                                    <img src="{{ variable }}">
+                                                {% else %}
+                                                    {% if forloop.last %}
+                                                        = {{ variable }}
+                                                    {% else %}
+                                                        + <img src="{{ variable }}">
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                                    <div class="equation-list">
+                                        IMAGENES
+                                    </div>
+                                </ul>
+                                <hr class="custom-hr"> <!-- Agrega esta línea -->
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-center">Introduce los datos y haz clic en "Generar sumas"</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

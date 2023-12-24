@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Resultados de generación de ecuaciones</h1>
+  <ul>
+    {% for actividad in ecuaciones %}
+      <li>
+        {% for ecuacion in actividad %}
+          {{ ecuacion }}<br>
+        {% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        li {
+
+            margin-left: 5px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        button[type="submit"] {
+            background-color: #0056b3;
+            border: none;
+        }
+        button[type="submit"]:hover {
+            background-color: #003b80;
+        }
+        label{
+            margin-right: 5px;
+        }
+        form{
+            color: white;
+        }
+        .ecuaciones{
+            margin-bottom: 10px;
+        }
+        img{
+            height: 2em;
+            width: 2em;
+
+        }
+        .equation-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 5px;
+        }
+        .equation-item {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .custom-hr {
+            border: 0;
+            border-top: 2px solid #000; /* Cambia el estilo de la línea según tus preferencias */
+            margin-top: 10px; /* Agrega espacio encima de la línea */
+            margin-bottom: 10px; /* Agrega espacio debajo de la línea */
+        }
+
+
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            text-align: left;
+            padding: 3px;
+            background-color: #f5f5f5;
+        }
+
+        #btn_agradecimientos {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="https://realwebcreator.es/" target="_blank">Mi sitio web</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+
+                    {% block formulario %}{% endblock %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+        <footer class="p-3 bottom-0 left-0">
+          <button class="btn btn-sm btn-outline-secondary bg-dark mb-5 align-left" type="button" data-toggle="collapse" data-target="#agradecimientos" aria-expanded="false" aria-controls="agradecimientos" id="btn_agradecimientos">Agradecimientos</button>
+          <div class="collapse bg-light" id="agradecimientos">
+            <ul>
+              <li><a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Roundicons Freebies - Flaticon</a></li>
+              <li><a href="https://www.flaticon.com/free-icons/costume-party" title="costume party icons">Costume party icons created by Freepik - Flaticon</a></li>
+              <li><a href="https://www.flaticon.com/free-icons/puppy" title="puppy icons">Puppy icons created by Freepik - Flaticon</a></li>
+              <li><a href="https://www.flaticon.com/free-icons/smile" title="smile icons">Smile icons created by justicon - Flaticon</a></li>
+            </ul>
+          </div>
+        </footer>
+
+
+
+    {% bootstrap_javascript %}
+
+</body>
+</html>

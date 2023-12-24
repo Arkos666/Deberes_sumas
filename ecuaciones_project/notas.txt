@@ -1,0 +1,9 @@
+
+    request.session.pop('ecuaciones', None)
+
+
+# Atribución iconos:
+<a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Roundicons Freebies - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/costume-party" title="costume party icons">Costume party icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/puppy" title="puppy icons">Puppy icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/smile" title="smile icons">Smile icons created by justicon - Flaticon</a>

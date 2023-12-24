@@ -1,0 +1,33 @@
+<VirtualHost *:80>
+    ServerName 212.227.40.18  # Reemplaza example.com con el nombre de tu dominio o dirección IP
+    DocumentRoot /var/www/ecuaciones_project/  # Reemplaza /var/www/myproject/ con la ruta a la carpeta de tu proyecto
+
+    WSGIDaemonProcess myproject python-home=/usr/bin/python3.11/ python-path=/var/www/ecuaciones_project/
+    WSGIProcessGroup ecuaciones_project
+    WSGIApplicationGroup %{GLOBAL}
+
+    <Directory /var/www/ecuaciones_project>
+        Require all granted
+        AllowOverride All
+        Options Indexes FollowSymLinks
+    </Directory>
+
+    Alias /static /var/www/ecuaciones_project/static
+    <Directory /var/www/ecuaciones_project/static>
+        Require all granted
+        AllowOverride All
+        Options Indexes FollowSymLinks
+    </Directory>
+
+    <Directory /var/www/ecuaciones_project/myproject>
+        <Files wsgi.py>
+            Require all granted
+            AllowOverride All
+            Options Indexes FollowSymLinks
+        </Files>
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+

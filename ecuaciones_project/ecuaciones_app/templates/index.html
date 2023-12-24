@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load custom_filters %}
+{%  load static %}
+
+
+
+{% block title %}
+    GENERADOR DE SUMAS
+{% endblock %}
+
+
+{% block formulario %}
+    <li class="d-flex align-items-center nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}" >
+        <form method="post" action="{% url 'index' %}" class="form-inline my-2 my-lg-0 align-items-center">
+            {% csrf_token %}
+            <div class="form-group mx-2">
+                {% bootstrap_field form.num_variables %}
+            </div>
+            <div class="form-group mx-2">
+                {% bootstrap_field form.suma_maxima %}
+            </div>
+            <div class="form-group mx-2">
+                {% bootstrap_field form.num_ejercicios %}
+            </div>
+            <div class="form-group mx-2">
+                <select name="carpeta" id="carpeta">
+                    {% for carpeta in carpetas %}
+                        <option value="{{ carpeta }}" {% if carpeta_seleccionada == carpeta %}selected{% endif %}>{{ carpeta }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Generar</button>
+            </form>
+            {% if ecuaciones %}
+                <form method="post" action="{% url 'crear_pdf' %}" class="form-inline my-2 my-lg-0 align-items-center">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="submit">Crear PDF</button>
+                </form>
+            {% endif %}
+
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mx-auto mt-5">
+                <h1 class="text-center">Generador de sumas</h1>
+                {% if ecuaciones %}
+                    <div class="mt-5">
+                        <h3>Resultados:</h3>
+                        <div class="row">
+                        {% for actividad in ecuaciones %}
+                            <div class="col-md-4 ecuaciones">
+                                <ul>
+                                    {% for ecuacion in actividad %}
+                                        <li>
+                                            {% for variable in ecuacion %}
+                                                {% if forloop.first %}
+                                                    <img src="{{ variable }}">
+                                                {% else %}
+                                                    {% if forloop.last %}
+                                                        = {{ variable }}
+                                                    {% else %}
+                                                        + <img src="{{ variable }}">
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                                    <div class="equation-list">
+                                        {% for img_path in var_img|get_item:forloop.counter0 %}
+                                            <li class="equation-item">
+                                                <img src="{{ img_path }}"> = <input type="number" style="width: 2.5em">
+                                            </li>
+                                        {% endfor %}
+                                    </div>
+                                </ul>
+                                <hr class="custom-hr"> <!-- Agrega esta línea -->
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-center">Introduce los datos y haz clic en "Generar sumas"</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
